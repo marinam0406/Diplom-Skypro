@@ -7,7 +7,7 @@ from .models import EduModel
 class EduModelAPITestCase(APITestCase):
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create(email='test@example.com', password='testpassword', is_staff=True,
+        self.user = User.objects.create(email='admin@test.com', password='123', is_staff=True,
                                         is_superuser=True)
         self.client.force_authenticate(user=self.user)
         self.model_data = {
@@ -48,4 +48,3 @@ class EduModelAPITestCase(APITestCase):
         response = self.client.delete(f'{self.delete_url}{model.id}/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertFalse(EduModel.objects.filter(id=model.id).exists())
-
