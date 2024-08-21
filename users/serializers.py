@@ -3,17 +3,26 @@ from users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+    '''
+    Serializer for User model.
+    '''
     class Meta:
         model = User
         fields = '__all__'
 
     def create(self, validated_data):
+        '''
+        Create a new user instance.
+        '''
         user = User(**validated_data)
         user.set_password(validated_data['password'])
         user.save()
         return user
 
     def update(self, instance, validated_data):
+        '''
+        Update an existing user instance.
+        '''
         instance.set_password(validated_data['password'])
         instance.save()
         return instance

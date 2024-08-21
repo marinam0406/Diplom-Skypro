@@ -5,7 +5,13 @@ from .models import EduModel
 
 
 class EduModelAPITestCase(APITestCase):
+    '''
+    Test cases for EduModel model.
+    '''
     def setUp(self):
+        '''
+        Set up test client and user.
+        '''
         self.client = APIClient()
         self.user = User.objects.create(email='admin@test.com', password='123', is_staff=True,
                                         is_superuser=True)
@@ -20,18 +26,27 @@ class EduModelAPITestCase(APITestCase):
         self.delete_url = '/models/delete/'
 
     def test_create_model(self):
+        '''
+        Test creating a new EduModel.
+        '''
         response = self.client.post(self.create_url, self.model_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(EduModel.objects.count(), 1)
         self.assertEqual(EduModel.objects.get().name, self.model_data['name'])
 
     def test_get_list_of_models(self):
+        '''
+        Test getting a list of EduModels.
+        '''
         EduModel.objects.create(**self.model_data)
         response = self.client.get('/models/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data['results']), 1)
 
     def test_update_model(self):
+        '''
+        Test updating an existing EduModel.
+        '''
         model = EduModel.objects.create(**self.model_data)
         updated_data = {
             'number': 2,
@@ -44,6 +59,9 @@ class EduModelAPITestCase(APITestCase):
         self.assertEqual(model.name, updated_data['name'])
 
     def test_delete_model(self):
+        '''
+        Test deleting an existing EduModel.
+        '''
         model = EduModel.objects.create(**self.model_data)
         response = self.client.delete(f'{self.delete_url}{model.id}/')
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
