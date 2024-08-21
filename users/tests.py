@@ -14,7 +14,6 @@ class UserAPITestCase(APITestCase):
         }
         self.url = reverse("users:users-list")
 
-
     def test_create_user(self):
         response = self.client.post(self.url, self.user_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
