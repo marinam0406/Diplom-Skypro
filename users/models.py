@@ -3,6 +3,9 @@ from django.db import models
 
 
 class User(AbstractUser):
+    '''
+    User model with email field and abstract user fields.
+    '''
     username = None
     email = models.EmailField(unique=True, verbose_name='email')
 
@@ -13,5 +16,8 @@ class User(AbstractUser):
         return self.email
 
     class Meta:
+        '''
+        Meta options for the User model.
+        '''
         verbose_name = 'пользователь'
         verbose_name_plural = 'пользователи'

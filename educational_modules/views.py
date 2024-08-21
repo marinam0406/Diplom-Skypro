@@ -35,11 +35,17 @@ class EduModelCreateAPIView(CreateAPIView):
 
 
 class EduModelUpdateAPIView(UpdateAPIView):
+    '''
+    Update an existing EduModel instance.
+    '''
     queryset = EduModel.objects.all()
     serializer_class = EduSerializer
     permission_classes = [IsAuthenticated]
 
 
 class EduModelDestroyAPIView(DestroyAPIView):
+    '''
+    Delete an existing EduModel instance.
+    '''
     queryset = EduModel.objects.all()
     permission_classes = [IsAdmin]
