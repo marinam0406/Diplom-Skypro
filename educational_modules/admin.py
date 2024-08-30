@@ -6,7 +6,7 @@ from educational_modules.models import EduModel
 @admin.register(EduModel)
 class EduModelAdmin(admin.ModelAdmin):
     '''
-    Admin interface for EduModel model.
+    Интерфейс администратора для модели EduModel.
     '''
     list_display = (
         "id",
