@@ -9,7 +9,7 @@ class EduModelAdmin(admin.ModelAdmin):
     Интерфейс администратора для модели EduModel.
     '''
     list_display = (
-        "id",
+        "number",
         "name",
         "description",
     )
